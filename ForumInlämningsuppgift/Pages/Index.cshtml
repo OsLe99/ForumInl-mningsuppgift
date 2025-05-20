@@ -1,0 +1,31 @@
+﻿@page
+@using ForumInlämningsuppgift.Models;
+@model IndexModel
+@inject UserManager<ForumUser> UserManager
+@inject SignInManager<ForumUser> SignInManager
+@{
+    ViewData["Title"] = "Home page";
+    var user = await UserManager.GetUserAsync(User);
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <p>Welcome back, @user?.Nickname!</p>
+    }
+    else
+    {
+        <p>Please sign in to access your account.</p>
+    }
+
+    @if (User.Identity.IsAuthenticated && !string.IsNullOrEmpty(user?.ProfileImage))
+    {
+        <img src="@user.ProfileImage" alt="Profile Image" style="width:150px; height:150px; border-radius: 50%;" />
+        <p>Image path: @user?.ProfileImage</p>
+    }
+    else
+    {
+        <p>No profile image available.</p>
+    })
+</div>
