@@ -11,6 +11,7 @@
     <h4>Threads in "@Model.SubCategory.Name"</h4>
     @foreach (var post in Model.Posts)
     {
+        <a asp-page="/Posts/ThreadPage" asp-route-ThreadId="@post.Id">
         <div class="card mb-3">
             <div class="card-body">
                 <h5>@post.Title</h5>
@@ -18,6 +19,7 @@
                 <small class="text-muted">Posted on @post.Date.ToShortDateString()</small>
             </div>
         </div>
+        </a>
     }
 }
 else

@@ -1,0 +1,90 @@
+﻿@page "{ThreadId:int}"
+@using ForumInlämningsuppgift.Models
+@model ForumInlämningsuppgift.Pages.Posts.ThreadPageModel
+@inject SignInManager<ForumUser> SignInManager
+@inject UserManager<ForumUser> UserManager
+@{
+    ViewData["Title"] = Model.Post?.Title ?? "Thread not found";
+}
+
+@if (Model.Post == null)
+{
+    <p>Post not found.</p>
+}
+else
+{
+<div class="card mb-3">
+    <div class="card-body d-flex">
+        <div class="me-3 text-center" style="width: 120px;">
+            <img src="@(Model.Post.User?.ProfileImage?? "/images/default.jpeg")"
+                 class="img-fluid rounded"
+                 style="max-width: 100px;"
+                 alt="User profile photo" />
+            <div class="mt-2"><strong>@(Model.Post.User?.Nickname ?? "Unknown")</strong></div>
+        </div>
+        <div class="flex-grow-1">
+            <h5>@Model.Post.Title</h5>
+            <p>@Model.Post.Text</p>
+            <small class="text-muted">Posted on @Model.Post.Date.ToString("g")</small>
+        </div>
+    </div>
+</div>
+
+    <hr />
+    <h4>Replies: (@Model.Replies.Count)</h4>
+
+    @if (Model.Replies.Count == 0)
+    {
+        <p>No replies yet. Be the first to reply!</p>
+    }
+    else
+    {
+        foreach (var reply in Model.Replies)
+        {
+            <div class="card mb-2">
+                <div class="card-body d-flex">
+                    <div class="me-3 text-center" style="width: 80px;">
+                        <img src="@(reply.User?.ProfileImage ?? "/images/default.jpeg")"
+                             class="img-fluid rounded"
+                             style="max-width: 50px; height: 50px;"
+                             alt="User profile photo" />
+                        <div class="mt-1" style="font-size: 0.85em;">
+                            <strong>@(reply.User?.Nickname ?? "Unknown")</strong>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1">
+                        <p>@reply.Text</p>
+                        <small class="text-muted">Posted on @reply.Date.ToString("g")</small>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+    <hr />
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h5>Add a Reply</h5>
+        <form method="post">
+            <div class="mb-3">
+                <textarea asp-for="NewReply.Text" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="NewReply.Text" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+            <label asp-for="NewReply.UserId" class="form-label"></label>
+            <input asp-for="NewReply.UserId" class="form-control" value="@UserManager.GetUserId(User)" readonly />
+            <span asp-validation-for="NewReply.UserId" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Post Reply</button>
+        </form>
+    }
+    else
+    {
+        <p><a asp-area="Identity" asp-page="/Account/Login">Log in</a> to reply.</p>
+    }
+}
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
