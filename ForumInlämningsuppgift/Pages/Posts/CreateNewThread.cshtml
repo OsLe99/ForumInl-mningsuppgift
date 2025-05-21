@@ -1,0 +1,38 @@
+﻿@page
+@using ForumInlämningsuppgift.Models
+@model ForumInlämningsuppgift.Pages.Posts.CreateNewThreadModel
+@inject SignInManager<ForumUser> SignInManager
+@inject UserManager<ForumUser> UserManager
+@{
+    ViewData["Title"] = "Create New Thread";
+}
+
+<h1>Create New Thread</h1>
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Post.Title" class="form-label"></label>
+        <input asp-for="Post.Title" class="form-control" />
+        <span asp-validation-for="Post.Title" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Post.Text" class="form-label"></label>
+        <textarea asp-for="Post.Text" class="form-control"></textarea>
+        <span asp-validation-for="Post.Text" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Post.SubCategoryId" class="form-label"></label>
+        <select asp-for="Post.SubCategoryId" class="form-select" asp-items="Model.SubCategoryList"></select>
+        <span asp-validation-for="Post.SubCategoryId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Post.UserId" class="form-label"></label>
+        <input asp-for="Post.UserId" class="form-control" value="@UserManager.GetUserId(User)" readonly />
+        <span asp-validation-for="Post.UserId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

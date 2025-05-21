@@ -1,0 +1,26 @@
+﻿@page "/Details/{id:int}"
+@model ForumInlämningsuppgift.Pages.SubCategory.DetailsModel
+@{
+}
+
+<h3>@Model.SubCategory.Name</h3>
+<a class="btn btn-success" asp-page="/Posts/CreateNewThread" asp-route-subCategoryId="@Model.SubCategory.Id">New Thread</a>
+
+@if (Model.Posts != null && Model.Posts.Count > 0)
+{
+    <h4>Threads in "@Model.SubCategory.Name"</h4>
+    @foreach (var post in Model.Posts)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5>@post.Title</h5>
+                <p>@post.Text</p>
+                <small class="text-muted">Posted on @post.Date.ToShortDateString()</small>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p>No threads available in this subcategory.</p>
+}

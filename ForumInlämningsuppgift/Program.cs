@@ -23,6 +23,11 @@ public class Program
 
         var app = builder.Build();
 
+        app.UseRouting();
+
+        app.UseAuthentication();
+        app.UseAuthorization();
+
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
@@ -37,10 +42,6 @@ public class Program
 
         app.UseHttpsRedirection();
         app.UseStaticFiles();
-
-        app.UseRouting();
-
-        app.UseAuthorization();
 
         app.MapRazorPages();
 
