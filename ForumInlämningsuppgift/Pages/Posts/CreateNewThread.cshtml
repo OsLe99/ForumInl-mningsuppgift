@@ -8,7 +8,7 @@
 }
 
 <h1>Create New Thread</h1>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label asp-for="Post.Title" class="form-label"></label>
         <input asp-for="Post.Title" class="form-control" />
@@ -20,15 +20,15 @@
         <span asp-validation-for="Post.Text" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="Post.SubCategoryId" class="form-label"></label>
+        <label asp-for="Post.SubCategoryId" class="form-label">Subcategory</label>
         <select asp-for="Post.SubCategoryId" class="form-select" asp-items="Model.SubCategoryList"></select>
         <span asp-validation-for="Post.SubCategoryId" class="text-danger"></span>
     </div>
-    <div class="mb-3">
-        <label asp-for="Post.UserId" class="form-label"></label>
-        <input asp-for="Post.UserId" class="form-control" value="@UserManager.GetUserId(User)" readonly />
-        <span asp-validation-for="Post.UserId" class="text-danger"></span>
+    <div>
+        <label asp-for="PostImage" class="form-label">Upload Image</label>
+        <input type="file" name="PostImage" class="form-control" />
     </div>
+        <input asp-for="Post.UserId" type="hidden" value="@UserManager.GetUserId(User)"></input>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 

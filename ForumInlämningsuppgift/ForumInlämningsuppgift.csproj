@@ -19,6 +19,8 @@
 
   <ItemGroup>
     <Folder Include="DAL\" />
+    <Folder Include="wwwroot\images\replies\" />
+    <Folder Include="wwwroot\images\posts\" />
     <Folder Include="wwwroot\images\profiles\" />
   </ItemGroup>
 

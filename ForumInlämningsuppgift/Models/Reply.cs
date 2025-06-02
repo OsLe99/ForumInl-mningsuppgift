@@ -17,5 +17,9 @@ namespace ForumInlämningsuppgift.Models
         public int PostId { get; set; }
         [ValidateNever]
         public virtual Post Post { get; set; }
+
+        public string? Image { get; set; }
+
+        public bool IsReported { get; set; } = false;
     }
 }

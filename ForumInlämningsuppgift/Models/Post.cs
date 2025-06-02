@@ -22,5 +22,7 @@ namespace ForumInlämningsuppgift.Models
         public virtual SubCategory SubCategory { get; set; }
         [ValidateNever]
         public virtual ICollection<Reply> Replies { get; set; }
+
+        public bool IsReported { get; set; } = false;
     }
 }
