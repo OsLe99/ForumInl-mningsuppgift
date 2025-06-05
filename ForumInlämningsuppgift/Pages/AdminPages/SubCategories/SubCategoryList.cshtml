@@ -1,0 +1,32 @@
+﻿@page
+@using ForumInlämningsuppgift.Models
+@model ForumInlämningsuppgift.Pages.AdminPages.SubCategories.SubCategoryListModel
+@{
+    ViewData["Title"] = "Subcategories";
+}
+<h2>Subcategories</h2>
+
+<a asp-page="CreateSubCategory" class="btn btn-primary mb-2">Create New Subcategory</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sub in Model.SubCategories)
+        {
+            <tr>
+                <td>@sub.Name</td>
+                <td>@sub.Category?.Name</td>
+                <td>
+                    <a asp-page="EditSubCategory" asp-route-id="@sub.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-page="DeleteSubCategory" asp-route-id="@sub.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

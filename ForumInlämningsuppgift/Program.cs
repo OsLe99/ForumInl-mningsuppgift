@@ -20,6 +20,7 @@ public class Program
         builder.Services.AddDefaultIdentity<ForumUser>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddEntityFrameworkStores<ApplicationDbContext>();
         builder.Services.AddRazorPages();
+        builder.Services.AddScoped<ForumInlämningsuppgift.DAL.CategoryManager>();
 
         var app = builder.Build();
 

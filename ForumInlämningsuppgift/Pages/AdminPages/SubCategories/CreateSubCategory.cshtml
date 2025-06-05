@@ -1,0 +1,39 @@
+﻿@page
+@model ForumInlämningsuppgift.Pages.AdminPages.SubCategories.CreateSubCategoryModel
+@{
+    ViewData["Title"] = "Create Subcategory";
+}
+
+<h2>Create Subcategory</h2>
+
+<form method="post">
+    <div>
+        <label asp-for="NewSubCategory.Name"></label>
+        <input asp-for="NewSubCategory.Name" class="form-control" />
+        <span asp-validation-for="NewSubCategory.Name"></span>
+    </div>
+    <div>
+        <label asp-for="NewSubCategory.CategoryId">Parent Category</label>
+        <select asp-for="NewSubCategory.CategoryId" class="form-control" asp-items="Model.CategoryOptions">
+            <option value="">-- Select Category --</option>
+        </select>
+        <span asp-validation-for="NewSubCategory.CategoryId"></span>
+    </div>
+    <button type="submit" class="btn btn-success mt-2">Create</button>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <strong>Model errors:</strong>
+        <ul>
+            @foreach (var modelState in ViewData.ModelState)
+            {
+                foreach (var error in modelState.Value.Errors)
+                {
+                    <li><strong>@modelState.Key:</strong> @error.ErrorMessage</li>
+                }
+            }
+        </ul>
+    </div>
+}

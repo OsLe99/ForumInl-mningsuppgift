@@ -1,0 +1,16 @@
+﻿@page
+@model ForumInlämningsuppgift.Pages.AdminPages.AdminIndexModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h2>Admin Dashboard</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <a asp-page="Categories/CategoryList" class="btn btn-primary w-100 mb-2">Manage Categories</a>
+    </div>
+    <div class="col-md-4">
+        <a asp-page="SubCategories/SubCategoryList" class="btn btn-secondary w-100 mb-2">Manage Subcategories</a>
+    </div>
+</div>

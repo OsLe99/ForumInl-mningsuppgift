@@ -1,0 +1,21 @@
+﻿@page "{id:int}"
+@using ForumInlämningsuppgift.Models
+@model ForumInlämningsuppgift.Pages.AdminPages.SubCategories.DeleteSubCategoryModel
+@{
+    ViewData["Title"] = "Delete SubCategory";
+}
+
+<h2>Delete SubCategory</h2>
+
+<h4>Are you sure you want to delete this subcategory?</h4>
+
+<div>
+    <strong>Name:</strong> @Model.SubCategoryToDelete.Name <br />
+    <strong>Parent Category:</strong> @Model.SubCategoryToDelete.Category?.Name <br />
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="SubCategoryToDelete.Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-page="SubCategoryList" class="btn btn-secondary">Cancel</a>
+</form>

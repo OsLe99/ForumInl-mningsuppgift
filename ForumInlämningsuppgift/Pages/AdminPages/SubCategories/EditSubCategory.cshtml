@@ -1,0 +1,26 @@
+﻿@page
+@model ForumInlämningsuppgift.Pages.AdminPages.SubCategories.EditSubCategoryModel
+@{
+    ViewData["Title"] = "Edit SubCategory";
+}
+
+<h2>Edit SubCategory</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="SubCategory.Id" />
+    <div>
+        <label asp-for="SubCategory.Name"></label>
+        <input asp-for="SubCategory.Name" />
+        <span asp-validation-for="SubCategory.Name"></span>
+    </div>
+    <div>
+        <label asp-for="SubCategory.CategoryId"></label>
+        <select asp-for="SubCategory.CategoryId" asp-items="Model.CategoryOptions"></select>
+        <span asp-validation-for="SubCategory.CategoryId"></span>
+    </div>
+    <button type="submit">Save</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

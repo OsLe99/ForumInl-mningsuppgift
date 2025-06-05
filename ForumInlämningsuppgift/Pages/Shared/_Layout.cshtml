@@ -34,10 +34,18 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
+                        @if (currentUser != null && currentUser.IsAdmin)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-page="/AdminPages/AdminIndex">Admin Dashboard</a>
+                                </li>
+                            }
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                     </ul>
+                   
 
                     <ul class="navbar-nav align-items-center">
                         @if (currentUser != null)
@@ -73,7 +81,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - ForumInlämningsuppgift - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2025 - CritHappens - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 

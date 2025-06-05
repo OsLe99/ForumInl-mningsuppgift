@@ -1,0 +1,32 @@
+﻿@page
+@model ForumInlämningsuppgift.Pages.AdminPages.Categories.CategoryListModel
+@{
+}
+<h2>Categories</h2>
+
+<a asp-page="CreateCategory">Create New Category</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cat in Model.Categories)
+        {
+            <tr>
+                <td>@cat.Name</td>
+                <td>@cat.Description</td>
+                <td>
+                    <a asp-page="EditCategory" asp-route-id="@cat.Id">Edit</a> |
+                    <form method="post" asp-page="DeleteCategory" asp-route-id="@cat.Id" style="display:inline">
+                        <button type="submit" onclick="return confirm('Are you sure?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

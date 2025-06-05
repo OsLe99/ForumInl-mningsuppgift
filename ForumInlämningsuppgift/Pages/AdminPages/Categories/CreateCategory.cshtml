@@ -1,0 +1,23 @@
+﻿@page
+@model ForumInlämningsuppgift.Pages.AdminPages.Categories.CreateCategoryModel
+@{
+}
+<h2>Create Category</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="NewCategory.Name" class="form-label"></label>
+        <input asp-for="NewCategory.Name" class="form-control" />
+        <span asp-validation-for="NewCategory.Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="NewCategory.Description" class="form-label"></label>
+        <textarea asp-for="NewCategory.Description" class="form-control"></textarea>
+        <span asp-validation-for="NewCategory.Description" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
