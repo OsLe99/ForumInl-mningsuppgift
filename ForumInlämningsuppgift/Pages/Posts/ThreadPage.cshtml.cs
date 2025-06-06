@@ -19,6 +19,9 @@ namespace ForumInlämningsuppgift.Pages.Posts
             _userManager = userManager;
         }
 
+        [BindProperty(SupportsGet = true)]
+        public int ThreadId { get; set; }
+
         public Post Post { get; set; }
         public List<Reply> Replies { get; set; }
         [BindProperty]

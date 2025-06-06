@@ -1,0 +1,44 @@
+﻿@page
+@model ForumInlämningsuppgift.Pages.AdminPages.ReportedPostsModel
+@{
+    ViewData["Title"] = "Reported Posts";
+}
+
+<h2>Reported Posts</h2>
+
+@if (Model.ReportedPosts.Count == 0)
+{
+    <p>No reported posts.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Post ID</th>
+                <th>Title</th>
+                <th>Text</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var post in Model.ReportedPosts)
+            {
+                <tr>
+                    <td>@post.Id</td>
+                    <td>@post.Title</td>
+                    <td>@(post.Text.Length > 100 ? post.Text.Substring(0, 100) + "...": post.Text)</td>
+                    <td>
+                        <a asp-page="/Posts/ThreadPage" asp-route-ThreadId="@post.Id" class="btn btn-info btn-sm">View</a>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@post.Id" class="d-inline">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this reply?');" >Delete Post</button>
+                        </form>
+                        <form method="post" asp-page-handler="Dismiss" asp-route-id="@post.Id" class="d-inline">
+                            <button type="submit" class="btn btn-secondary">Dismiss Report</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -40,7 +40,7 @@ namespace ForumInlämningsuppgift.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Category", (string)null);
                 });
 
             modelBuilder.Entity("ForumInlämningsuppgift.Models.ForumUser", b =>
@@ -155,7 +155,7 @@ namespace ForumInlämningsuppgift.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("ForumInlämningsuppgift.Models.Reply", b =>
@@ -192,7 +192,7 @@ namespace ForumInlämningsuppgift.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Replies");
+                    b.ToTable("Replies", (string)null);
                 });
 
             modelBuilder.Entity("ForumInlämningsuppgift.Models.SubCategory", b =>
@@ -214,7 +214,7 @@ namespace ForumInlämningsuppgift.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("SubCategory");
+                    b.ToTable("SubCategory", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

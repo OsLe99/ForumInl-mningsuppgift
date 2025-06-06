@@ -4,9 +4,9 @@
 }
 <h2>Categories</h2>
 
-<a asp-page="CreateCategory">Create New Category</a>
+<a asp-page="CreateCategory" class="btn btn-primary mb-2">Create New Category</a>
 
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>Name</th>
@@ -21,9 +21,9 @@
                 <td>@cat.Name</td>
                 <td>@cat.Description</td>
                 <td>
-                    <a asp-page="EditCategory" asp-route-id="@cat.Id">Edit</a> |
+                    <a asp-page="EditCategory" asp-route-id="@cat.Id" class="btn btn-sm btn-warning">Edit</a> |
                     <form method="post" asp-page="DeleteCategory" asp-route-id="@cat.Id" style="display:inline">
-                        <button type="submit" onclick="return confirm('Are you sure?');">Delete</button>
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">Delete</button>
                     </form>
                 </td>
             </tr>
