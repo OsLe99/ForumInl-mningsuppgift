@@ -14,6 +14,7 @@ public class ApplicationDbContext : IdentityDbContext<ForumUser>
     public DbSet<Models.SubCategory> SubCategory { get; set; }
     public DbSet<Models.Post> Posts { get; set; }
     public DbSet<Models.Reply> Replies { get; set; }
+    public DbSet<Models.Message> Messages { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -23,6 +24,18 @@ public class ApplicationDbContext : IdentityDbContext<ForumUser>
             .HasOne(r => r.Post)
             .WithMany(p => p.Replies)
             .HasForeignKey(r => r.PostId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Entity<Message>()
+            .HasOne(m => m.Sender)
+            .WithMany()
+            .HasForeignKey(m => m.SenderId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Entity<Message>()
+            .HasOne(m => m.Recipient)
+            .WithMany()
+            .HasForeignKey(m => m.RecipientId)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }
