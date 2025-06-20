@@ -21,6 +21,8 @@ public class Program
             .AddEntityFrameworkStores<ApplicationDbContext>();
         builder.Services.AddRazorPages();
         builder.Services.AddScoped<ForumInlämningsuppgift.DAL.CategoryManager>();
+        builder.Services.AddHttpClient();
+
 
         var app = builder.Build();
 

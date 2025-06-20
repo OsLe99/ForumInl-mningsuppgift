@@ -1,0 +1,25 @@
+﻿@page "{userId}"
+@using ForumInlämningsuppgift.Models
+@model ForumInlämningsuppgift.Pages.UserPostsModel
+@{
+}
+
+<h2>Posts by user</h2>
+
+@if (Model.Posts.Count == 0)
+{
+    <p>This user has not posted anything yet.</p>
+}
+else
+{
+    @foreach (var post in Model.Posts)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5>@post.Title</h5>
+                <p>@post.Text</p>
+                <small class="text-muted">Posted on @post.Date.ToString("g")</small>
+            </div>
+        </div>
+    }
+}

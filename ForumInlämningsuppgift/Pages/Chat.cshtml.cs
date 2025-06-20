@@ -36,7 +36,22 @@ namespace ForumInlämningsuppgift.Pages
             Messages = await _context.Messages
                 .Where(m => (m.SenderId == currentUserId && m.RecipientId == userId) ||
                             (m.SenderId == userId && m.RecipientId == currentUserId))
-                .OrderBy(m => m.Date).ToListAsync();
+                .OrderBy(m => m.Date)
+                .ToListAsync();
+
+            var unreadMessages = Messages
+                .Where(m => m.RecipientId == currentUserId && !m.IsRead)
+                .ToList();
+
+            if (unreadMessages.Any())
+            {
+                foreach (var msg in unreadMessages)
+                {
+                    msg.IsRead = true;
+                }
+                await _context.SaveChangesAsync();
+            }
+
             return Page();
         }
 
